@@ -6,6 +6,7 @@ import bookRoute from "./routes/bookRoutes";
 import { AppDataSource } from "./database/data"; // ✅ Ensure correct path
 
 const app = express();
+export default app
 const PORT = 3001;
 
 // ✅ Middleware to parse JSON
@@ -23,11 +24,11 @@ app.use(
 );
 
 
-// ✅ Routes
-app.use("/book", bookRoute);
 
-// ✅ Initialize DB and start server
-AppDataSource.initialize()
+app.use("/books", bookRoute);
+
+
+ AppDataSource.initialize()
   .then(() => {
     console.log("📦 Database connected successfully");
     app.listen(PORT, () => {

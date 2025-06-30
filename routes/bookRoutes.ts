@@ -1,7 +1,7 @@
-import express from "express";
-import { getBooks, addBook, addReview, getReview } from "../controllers/bookControllerts";
+import { Router } from "express";
+import { getBooks, addBook, addReview, getReview } from "../controllers/bookControllers";
 
-const router = express.Router();
+const router = Router();
 
 /**
  * @openapi
@@ -55,7 +55,7 @@ const router = express.Router();
  *               items:
  *                 $ref: '#/components/schemas/Book'
  */
-router.get("/", getBooks);
+router.get("/", getBooks as any);
 
 //
 // POST /books
@@ -96,7 +96,7 @@ router.get("/", getBooks);
  *             schema:
  *               $ref: '#/components/schemas/Book'
  */
-router.post("/", addBook);
+router.post("/", addBook as any);
 
 //
 // GET /books/{id}/review
@@ -135,7 +135,7 @@ router.post("/", addBook);
  *       404:
  *         description: Book not found or no reviews
  */
-router.get("/:id/review", getReview);
+router.get("/:id/review", getReview as any);
 
 //
 // POST /books/{id}/review
@@ -182,6 +182,6 @@ router.get("/:id/review", getReview);
  *       404:
  *         description: Book not found
  */
-router.post("/:id/review", addReview);
+router.post("/:id/review", addReview as any);
 
 export default router;
